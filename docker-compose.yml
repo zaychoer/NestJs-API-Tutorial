@@ -1,29 +1,25 @@
 version: '3.8'
 services:
-  nest-api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: nest-api
-    restart: always
+  dev-db:
+    image: postgres:14-alpine
     ports:
-      - 3000:3000
-    depends_on:
-      - nest-postgres
-    env_file:
-      - .env
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=nest
+    networks:
+      - freecodecamp
 
-  nest-postgres:
-    image: postgres:13
-    container_name: nest-postgres
-    restart: always
+  test-db:
+    image: postgres:14-alpine
     ports:
-      - 5432:5432
-    env_file:
-      - .env
-    volumes:
-      - nest-postgres:/var/lib/postgresql/data
-
-volumes:
-  nest-postgres:
-    name: nest-postgres-db
+      - '5435:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=nest
+    networks:
+      - freecodecamp
+networks:
+  freecodecamp:
