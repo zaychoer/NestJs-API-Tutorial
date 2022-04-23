@@ -33,15 +33,13 @@ $ yarn install
 ```
 
 ## Create env file
-* Development
+* .env (Development)
   ```
-    .env
     DATABASE_URL="postgresql://username:password@localhost:5432/database_name?schema=public"
     JWT_SECRET=''
   ```
-* Testing
+* .env.test (Testing)
   ```
-    .env.test
     DATABASE_URL="postgresql://username:password@localhost:5435/database_name?schema=public"
     JWT_SECRET=''
   ```
