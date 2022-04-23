@@ -29,33 +29,59 @@
 ## Installation
 
 ```bash
-$ npm install
+$ yarn install
+```
+
+## Create env file
+* Development
+  ```
+    .env
+    DATABASE_URL="postgresql://username:password@localhost:5432/database_name?schema=public"
+    JWT_SECRET=''
+  ```
+* Testing
+  ```
+    .env.test
+    DATABASE_URL="postgresql://username:password@localhost:5435/database_name?schema=public"
+    JWT_SECRET=''
+  ```
+
+## Running the database postgres using docker
+```bash
+# development
+$ yarn db:dev:up
+
+# restart
+$ yarn db:dev:restart
+
+# testing
+$ yarn db:test:up
+
+# restart
+$ yarn db:test:restart
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm run start
+$ yarn start
 
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
 
 ## Test
 
 ```bash
-# unit tests
-$ npm run test
+# integration tests
+$ yarn test:int
 
 # e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ yarn test:e2e
 ```
 
 ## Support
