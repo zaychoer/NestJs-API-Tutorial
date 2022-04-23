@@ -21,6 +21,7 @@ model User {
   lastName  String?
 
   bookmarks Bookmark[]
+  todos     Todo[]
 
   @@map("users")
 }
@@ -37,4 +38,24 @@ model Bookmark {
   user   User   @relation(fields: [userId], references: [id])
 
   @@map("bookmarks")
+}
+
+model Todo {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title       String     @unique
+  description String?
+  status      TodoStatus @default(OPEN)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@map("todos")
+}
+
+enum TodoStatus {
+  OPEN
+  IN_PROGRESS
+  DONE
 }
